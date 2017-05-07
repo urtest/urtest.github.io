@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+<div class="home">
+  <a class="rss-link" href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS Feed</a>
+  <h1 class="page-heading">Посты</h1>
+
+  <ul class="post-list">
+    {% for post in paginator.posts %}
+      <li>
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+
+        <div class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</div>
+
+        <div class="post-excerpt">
+          {% if post.content.size > 2000 %}
+            {{ post.content | truncatewords: 300 }} <!-- bad! content gives you rendered html and you will truncate in the middle of a node -->
+            <a href="{{ post.url }}">Далее &raquo;</a>
+         {% else %}
+            {{ post.content }}
+         {% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- Pagination links -->
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="previous">&larr;</a>
+  {% else %}
+    <span class="previous">&larr;</span>
+  {% endif %}
+  <span class="page_number ">{{ paginator.page }} of {{ paginator.total_pages }}</span>
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="next">&rarr;</a>
+  {% else %}
+    <span class="next ">&rarr;</span>
+  {% endif %}
+</div>
+
+</div>
