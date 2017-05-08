@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "По следам дела Соколовского"
-date:   2017-05-01 08:00:00 +0300
+date:   2017-05-11 08:00:00 +0300
 categories: things
 sitemap:
     priority: 0.7
