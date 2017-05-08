@@ -16,12 +16,13 @@ layout: default
         <div class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</div>
 
         <div class="post-excerpt">
-          {% if post.content.size > 2000 %}
-            {{ post.content | truncatewords: 300 }} <!-- bad! content gives you rendered html and you will truncate in the middle of a node -->
-            <a href="{{ post.url }}">Далее &raquo;</a>
-         {% else %}
-            {{ post.content }}
-         {% endif %}
+
+          {{ post.content | split: '<!-- more -->' | first }}
+          {% if post.content contains '<!-- more -->' %}
+              <a href="{{ post.url }}">Далее &raquo;</a>
+          {% endif %}
+
+
         </div>
       </li>
     {% endfor %}
